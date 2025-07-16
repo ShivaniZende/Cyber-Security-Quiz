@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Certificate of Achievement</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Times New Roman', serif;
+      background: #eaeaea;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .certificate-container {
+      width: 900px;
+      height: 640px;
+      background: #fffdf5;
+      border: 10px solid #d4af37; /* gold border */
+      padding: 40px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+      position: relative;
+    }
+
+    .certificate-header {
+      text-align: center;
+      border-bottom: 2px solid #d4af37;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+
+    .certificate-header h1 {
+      margin: 0;
+      font-size: 36px;
+      color: #333;
+      letter-spacing: 2px;
+    }
+
+    .certificate-body {
+      text-align: center;
+    }
+
+    .certificate-body p {
+      font-size: 20px;
+      margin: 20px 0;
+      color: #444;
+    }
+
+    .recipient-name {
+      font-size: 28px;
+      font-weight: bold;
+      color: #2d2d2d;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .signature {
+      position: absolute;
+      bottom: 40px;
+      right: 60px;
+      text-align: center;
+      color: #444;
+    }
+
+    .signature-line {
+      width: 200px;
+      border-top: 2px solid #444;
+      margin-bottom: 5px;
+    }
+
+    .download-btn {
+      display: block;
+      margin: 30px auto 0;
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #d4af37;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .download-btn:hover {
+      background-color: #b58f2a;
+    }
+    #h1head{
+          color: blueviolet;
+          border: 1px solid white;
+          box-shadow: 2px 1px 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="certificate-container" id="certificate">
+    <div class="certificate-header">
+      <h1 id="h1head">🖥️INFOYASHONAND TECHNOLOGY PVT.LMT</h1><BR>
+      <h2>🎓CERTIFICATE OF ACHIEVEMENT</h2>
+    </div>
+    <div class="certificate-body">
+      <p>This certificate is proudly presented to</p>
+      <div class="recipient-name" id="recipientName">Your Name</div><br>
+      <p>For successfully completing the <strong>CyberSecurity Quiz</strong> with excellence.</p><br>
+      <p>Date: <span id="certDate"></span></p>
+    </div>
+    
+    <div class="signature">
+      <div class="signature-line"></div><br>
+      <div>Instructor Signature</div>
+    </div>
+  </div>
+
+  <button class="download-btn" onclick="downloadCertificate()">Download Certificate</button>
+
+  <script>
+  window.onload = function () {
+    // Set date
+    document.getElementById('certDate').textContent = new Date().toLocaleDateString();
+
+    // Ask for name once
+    const name = prompt("Enter your full name:");
+    if (name) {
+      document.getElementById('recipientName').textContent = name;
+    }
+
+    // Download function
+    window.downloadCertificate = function () {
+      const cert = document.getElementById("certificate");
+
+      html2canvas(cert).then(canvas => {
+        const link = document.createElement('a');
+        link.download = `${name}_certificate.png`;
+        link.href = canvas.toDataURL();
+        link.click();
+      });
+    };
+  };
+</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+</body>
+</html>
